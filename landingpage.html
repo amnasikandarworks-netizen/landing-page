@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Green Petals | Flower Shop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Animated Background Canvas -->
+    <canvas id="bgCanvas"></canvas>
+
+    <div class="content-wrapper">
+        <!-- Header / Hero Section -->
+        <div class="hero">
+            <h1>Green Petals</h1>
+            <p class="tagline">Fresh flowers from our garden to your home</p>
+            <button class="shop-btn">Browse Collection</button>
+        </div>
+
+        <!-- About Shop Section -->
+        <div class="about-card">
+            <h2>About Our Shop</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>We are a small, sustainable flower farm dedicated to growing beautiful blooms with care for the environment. Every flower is hand-picked at peak freshness.</p>
+                    <p>Our mission is to bring nature's beauty into your home while supporting local, eco-friendly farming practices.</p>
+                    <p class="highlight">Free delivery on orders over $50</p>
+                </div>
+                <div class="image-placeholder">
+                    <img src="mygarden.jpeg" alt="My Garden" style="width:100%; height:100%; object-fit:cover; border-radius:20px;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Best Sellers Section -->
+        <div class="products-section">
+            <h2>Best Sellers</h2>
+            <div class="products-grid">
+                
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image-placeholder">
+                        <img src="roses.jpeg" alt="Roses" style="width:100%; height:100%; object-fit:cover; border-radius:18px;">
+                    </div>
+                    <h3>Classic Roses</h3>
+                    <p class="price">$35.00</p>
+                    <p class="description">A dozen fresh red roses</p>
+                    <button class="buy-btn">Order Now</button>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image-placeholder">
+                        <img src="sunflowers.jpeg" alt="Sunflowers" style="width:100%; height:100%; object-fit:cover; border-radius:18px;">
+                    </div>
+                    <h3>Sunny Sunflowers</h3>
+                    <p class="price">$28.00</p>
+                    <p class="description">Bright and cheerful</p>
+                    <button class="buy-btn">Order Now</button>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image-placeholder">
+                        <img src="mix.jpeg" alt="mix" style="width:100%; height:100%; object-fit:cover; border-radius:18px;">
+                    </div>
+                    <h3>Garden Mix</h3>
+                    <p class="price">$42.00</p>
+                    <p class="description">Seasonal flower arrangement</p>
+                    <button class="buy-btn">Order Now</button>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image-placeholder">
+                        <img src="lillies.jpeg" alt="product name" style="width:100%; height:100%; object-fit:cover; border-radius:18px;">
+                    </div>
+                    <h3>Spring Tulips</h3>
+                    <p class="price">$32.00</p>
+                    <p class="description">Colorful tulip arrangement</p>
+                    <button class="buy-btn">Order Now</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delivery Info Section -->
+        <div class="delivery-card">
+            <h2>Delivery Information</h2>
+            <div class="delivery-grid">
+                <div class="delivery-item">
+                    <h3>Free Delivery</h3>
+                    <p>On orders over $50</p>
+                </div>
+                <div class="delivery-item">
+                    <h3>Same Day</h3>
+                    <p>Order before 2pm</p>
+                </div>
+                <div class="delivery-item">
+                    <h3>Fresh Guarantee</h3>
+                    <p>7 day freshness promise</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Reviews -->
+        <div class="reviews-card">
+            <h2>Customer Reviews</h2>
+            <div class="reviews-grid">
+                <div class="review">
+                    <p>"The flowers were incredibly fresh and lasted over a week. Will order again."</p>
+                    <p class="customer">- Sarah M.</p>
+                </div>
+                <div class="review">
+                    <p>"Beautiful arrangements and great customer service. Highly recommend."</p>
+                    <p class="customer">- David L.</p>
+                </div>
+                <div class="review">
+                    <p>"Best flower shop in town. My wife loved her birthday bouquet."</p>
+                    <p class="customer">- Emma R.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-card">
+            <div class="contact-info">
+                <h2>Visit Us</h2>
+                <p>Monday - Friday: 9am - 7pm</p>
+                <p>Saturday: 10am - 5pm</p>
+                <p>Sunday: Closed</p>
+                <p>Phone: (555) 123-4567</p>
+                <p>Email: hello@greenpetals.com</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Green Petals - Sustainable flowers for every season</p>
+            <p class="small">2024 Green Petals Flower Shop</p>
+        </div>
+    </div>
+
+    <script>
+        // Animated Green Nature Background
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        
+        let particles = [];
+        let mouseX = width / 2;
+        let mouseY = height / 2;
+        
+        const colors = ['#5a7a4a', '#6b8c54', '#7a9c60', '#8aac70', '#4a6a3a', '#3a5a2a'];
+        
+        class LeafParticle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.size = Math.random() * 5 + 3;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.3 + 0.2;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.alpha = Math.random() * 0.3 + 0.15;
+            }
+            
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                
+                const dx = mouseX - this.x;
+                const dy = mouseY - this.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 100) {
+                    const angle = Math.atan2(dy, dx);
+                    const force = (100 - distance) / 100;
+                    this.x -= Math.cos(angle) * force * 1.5;
+                    this.y -= Math.sin(angle) * force * 1.5;
+                }
+                
+                if (this.y > height) this.y = 0;
+                if (this.y < 0) this.y = height;
+                if (this.x > width) this.x = 0;
+                if (this.x < 0) this.x = width;
+            }
+            
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = this.alpha;
+                ctx.fill();
+            }
+        }
+        
+        function initParticles() {
+            particles = [];
+            const particleCount = Math.min(100, Math.floor(width * height / 10000));
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new LeafParticle());
+            }
+        }
+        
+        let gradientOffset = 0;
+        
+        function drawBackground() {
+            gradientOffset += 0.001;
+            const grad1 = `hsl(${95 + Math.sin(gradientOffset) * 5}, 35%, 88%)`;
+            const grad2 = `hsl(${100 + Math.cos(gradientOffset * 0.7) * 5}, 30%, 82%)`;
+            
+            const gradient = ctx.createLinearGradient(0, 0, width, height);
+            gradient.addColorStop(0, grad1);
+            gradient.addColorStop(1, grad2);
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, height);
+            
+            for (let i = 0; i < 12; i++) {
+                ctx.beginPath();
+                const shapeX = (Math.sin(gradientOffset * 0.3 + i) * 60) + (width * (i / 12));
+                const shapeY = (Math.cos(gradientOffset * 0.2 + i) * 30) + (height * 0.7);
+                ctx.arc(shapeX, shapeY, 35 + Math.sin(gradientOffset * 1.5 + i) * 15, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(80, 100, 60, 0.03)`;
+                ctx.fill();
+            }
+        }
+        
+        function drawConnections() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 80) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(70, 100, 50, ${0.06 * (1 - distance / 80)})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+        
+        function handleMouseMove(e) {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        }
+        
+        function handleTouchMove(e) {
+            if (e.touches[0]) {
+                mouseX = e.touches[0].clientX;
+                mouseY = e.touches[0].clientY;
+            }
+        }
+        
+        function animate() {
+            drawBackground();
+            
+            for (let particle of particles) {
+                particle.update();
+                particle.draw();
+            }
+            
+            drawConnections();
+            requestAnimationFrame(animate);
+        }
+        
+        function handleResize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            initParticles();
+        }
+        
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('touchmove', handleTouchMove);
+        
+        handleResize();
+        animate();
+    </script>
+
+</body>
+</html>
